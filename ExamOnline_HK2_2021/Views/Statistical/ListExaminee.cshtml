@@ -1,0 +1,47 @@
+﻿@model ModelView
+
+<h1>Thống kê số lượng sinh viên theo từng khóa thi, theo từng trình độ</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="ListExaminee" asp-controller="Statistical" method="post">
+                <div class="col-lg-12">
+                    <p class="font-weight-bold">Trình độ</p>
+                    <select class="form-control" name="LevelName">
+                        @foreach (var i in Model.Levels)
+                        {
+                            <option>
+                                @i.LevelName
+                            </option>
+                        }
+                    </select>
+                    <p class="font-weight-bold mt-2">Khoá thi</p>
+                    <select class="form-control" name="Examination">
+                        @foreach (var i in Model.Examinations)
+                        {
+                            <option>
+                                @i.ExaminationId
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div class="col-lg-12 mt-5">
+                    <button class="btn btn-outline-info">Lọc</button> &nbsp;
+                    <a style="font-size:15px" asp-action="ListExaminee" asp-controller="Statistical"><i class="fas fa-sync"></i></a>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-12" style="margin-top:15px">
+            @try
+            {
+                <p class=font-weight-bold>Kết quả: &nbsp;</p>
+                int temp = Model.Examinees.Count();
+                <p>Số lượng sinh viên ứng với trình độ đã chọn: &nbsp;@temp</p>
+            }
+            catch
+            {
+                <p>Không tìm thấy kết quả</p>
+            }
+        </div>
+    </div>
+</div>

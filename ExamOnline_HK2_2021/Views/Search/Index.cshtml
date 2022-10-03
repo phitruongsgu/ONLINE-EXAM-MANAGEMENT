@@ -1,0 +1,19 @@
+﻿@model SearchRoomModel
+
+<h3 style="text-align:center">Tra cứu phòng thi</h3>
+<p style="text-align:center">Nhập đúng họ tên và số điện thoại của bạn để tìm kiếm</p>
+<form method="post" asp-action="SearchRoom" asp-controller="Search">
+    <div>
+        <label>Họ và tên</label> &nbsp; &nbsp; &nbsp; &nbsp;
+        <input asp-for="FullName" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+    <div style="margin-top:10px">
+        <label>Số điện thoại</label> &nbsp;
+        <input asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="col text-left" style="margin-top:10px">
+        <button class="text-center btn btn-outline-info">Tìm kiếm</button>
+    </div>
+</form>

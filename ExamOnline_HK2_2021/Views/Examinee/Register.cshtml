@@ -1,0 +1,84 @@
+﻿@model ExamineeModel
+@{
+    ViewData["Title"] = "Đăng ký thi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .text-center input,
+    .input {
+        border-radius: 15px;
+    }
+</style>
+
+<div class="container-fluid">
+    <h1 align="center">Đăng ký dự thi</h1>
+    <div class="row">
+        <form asp-action="Register" asp-controller="Examinee" method="post" style="width:900px;margin:0 auto;">
+            <div hidden>
+                <label>ID thí sinh</label>
+                <input name="AutoId" value="0" type="text" />
+            </div>
+            <div class="form-group">
+                <div class="col-4">
+                    <label class="font-weight-bold" asp-for="CardId"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="CardId" type="text">
+                    <span asp-validation-for="CardId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-4">
+                    <label class="font-weight-bold" asp-for="FullName"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="FullName" type="text">
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-4">
+                    <label class="font-weight-bold" asp-for="DoB"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="DoB" type="text">
+                    <span asp-validation-for="DoB" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-4">
+                    <label class="font-weight-bold" asp-for="Phone"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Phone" type="tel">
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-4">
+                    <label class="font-weight-bold" asp-for="Gender"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Gender" type="tel">
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-4">
+                    <label class="font-weight-bold" asp-for="ExaminationId"></label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownList("ExaminationId", (IEnumerable<SelectListItem>)ViewBag.Examination, "Chọn khoá thi", new { @class = "form-control" })
+                    <span asp-validation-for="ExaminationId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="text-center mt-2">
+                <input type="submit" id="submit" class="btn btn-primary mb-2" value="Đăng ký">
+            </div>
+        </form>
+    </div>
+    <div class="text-left">
+        <a href="/Examinee/Index" class="btn btn-primary">Về danh sách thí sinh</a>
+    </div>
+</div>

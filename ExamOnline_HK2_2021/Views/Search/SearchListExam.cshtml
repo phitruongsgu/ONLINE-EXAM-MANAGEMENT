@@ -1,0 +1,87 @@
+﻿@model ModelView
+
+<h2 class="text-dark">Danh sách thí sinh dựa theo phòng thi</h2>
+<form asp-action="SearchListExam" asp-controller="Search" method="post">
+    <div>
+        <label class="text-left font-weight-bold">Phòng thi</label>
+        <select class="form-control" name="RoomName">
+            @foreach (var i in Model.Rooms)
+            {
+                <option>
+                    @i.RoomName
+                </option>
+            }
+        </select>
+        <label class="text-left mt-3 font-weight-bold">Khoá thi</label>
+        <select class="form-control" name="ExaminationId">
+            @foreach (var i in Model.Examinations)
+            {
+                <option>
+                    @i.ExaminationId
+                </option>
+            }
+        </select>
+    </div>
+    <style>
+        .form-control {
+            width: 30%;
+        }
+    </style>
+    <button class="btn btn-info mt-3">
+        Tìm kiếm
+    </button>
+</form>
+
+@if (Model.room != null && Model.examination != null)
+{
+    <style>
+        table tr td {
+            padding: 5px 5px 8px 8px;
+        }
+    </style>
+
+    <table border="1" style="margin-top:20px" class="table table-bordered table-hover text-center">
+        <thead class="thead-light">
+            <tr>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
+                <th>Chứng minh nhân dân</th>
+                <th>Email</th>
+                <th>Khoá thi</th>
+                <th>Phòng thi</th>
+                <th>Mã số sinh viên</th>
+                <th>Ngày đăng ký</th>
+                <th>Giới tính</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Examinees != null)
+            {
+                @foreach (var i in Model.Examinees)
+                {
+                    <tr>
+                        <td>@i.FullName</td>
+                        <td>@i.DoB</td>
+                        <td>@i.CardId</td>
+                        <td>@i.Email</td>
+                        <td>@i.ExaminationId</td>
+                        <td>@i.RoomName</td>
+                        <td>@i.CodeId</td>
+                        <td>@i.DateSign</td>
+                        <td>@i.Gender</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="9">Không tìm thấy kết quả!</td></tr>
+            }
+        </tbody>
+    </table>
+}
+
+<style>
+    .form-group {
+        display: inline-block;
+    }
+</style>

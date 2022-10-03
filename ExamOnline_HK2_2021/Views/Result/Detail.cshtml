@@ -1,0 +1,41 @@
+﻿@model ModelView
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h1>Danh sách kết quả các điểm thi của các thí sinh</h1>
+    <div class="row">
+        <table class="table table-bordered table-hover table-striped text-center"
+               style="display:block;overflow:auto;border-radius:10px;">
+            <thead class="thead-light" style="display:table;width:100%;table-layout:fixed">
+                <tr>
+                    <th scope="col">Mã số sinh viên</th>
+                    <th scope="col">Nghe</th>
+                    <th scope="col">Nói</th>
+                    <th scope="col">Đọc</th>
+                    <th scope="col">Viết</th>
+                </tr>
+            </thead>
+            <tbody style="display:block;overflow:auto;max-height:500px;width:auto">
+                @if (Model.Results != null) // nếu dữ liệu khác null
+                {
+                    @foreach (var i in Model.Results)
+                    {
+                        <tr style="display:table;width:100%;table-layout:fixed;background-color:white;">
+                            <td style="color:black">@i.ExamineeId</td>
+                            <td style="color:black">@i.ListenGrade</td>
+                            <td style="color:black">@i.SpeakGrade</td>
+                            <td style="color:black">@i.ReadGrade</td>
+                            <td style="color:black">@i.WriteGrade</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="text-right">
+            <a href="/Examinee/Index" class="btn btn-primary">Về danh sách thí sinh</a>
+        </div>
+    </div>
+</div>

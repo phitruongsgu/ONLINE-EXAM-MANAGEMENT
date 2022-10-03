@@ -1,0 +1,60 @@
+﻿@model ModelView
+@{
+    ViewData["Title"] = "Chi tiết thông tin sinh viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid dashboard-content">
+    <div class="row"><a class="btn btn-primary mb-3 ml-0" asp-action="Index" asp-controller="Examinee"> <i class="fa fa-reply-all"></i> &nbsp; Quay lại danh sách sinh viên</a></div>
+    <div class="row" style="font-size:18px">
+        <div class="col-8" style="padding:20px;background-color:white;border:0.5px solid silver;border-radius:5px;">
+            <h1 class="text-center"><i class="bi bi-receipt-cutoff"></i> Mô tả chi tiết thông tin sinh viên</h1>
+            <div class="table-responsive">
+                <table class="table table-sm table-borderless mb-0">
+                    <tbody>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Họ và tên</strong></th>
+                            <td>@Model.examinee.FullName</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Ngày sinh</strong></th>
+                            <td>@Model.examinee.DoB</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Số chứng minh nhân dân</strong></th>
+                            <td>@Model.examinee.CardId</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Số điện thoại</strong></th>
+                            <td>@Model.examinee.Phone</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Khoá thi</strong></th>
+                            <td>@Model.examinee.ExaminationId</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Phòng thi</strong></th>
+                            <td>@Model.examinee.RoomName</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Ngày đăng ký thi</strong></th>
+                            <td>@Model.examinee.DateSign</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Mã số sinh viên</strong></th>
+                            <td>@Model.examinee.CodeId</td>
+                        </tr>
+                        <tr>
+                            <th class="pl-0 w-25" scope="row"><strong>Giới tính</strong></th>
+                            <td>@Model.examinee.Gender</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+

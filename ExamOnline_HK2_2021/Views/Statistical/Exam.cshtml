@@ -1,0 +1,35 @@
+﻿@model ModelView
+
+<h1>Thống kê số lượng khoá thi và phòng thi theo từng trình độ</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="Exam" asp-controller="Statistical" method="post">
+                <div class="col-lg-6">
+                    <p class="font-weight-bold">Trình độ</p>
+                    <select class="form-control" name="LevelName">
+                        @foreach (var i in Model.Levels)
+                        {
+                            <option>
+                                @i.LevelName
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div class="col-lg-6 mt-5">
+                    <button class="btn btn-outline-info">Lọc</button> &nbsp;
+                    <a style="font-size:15px" asp-action="Exam" asp-controller="Statistical"><i class="fas fa-sync"></i></a>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-12" style="margin-top:15px">
+            @if (Model.Rooms != null && Model.Examinations != null)
+            {
+                int temp = Model.Rooms.Count();
+                <p class="font-weight-bold">Số lượng phòng thi: @temp</p>
+                int tempExaminee = Model.Examinations.Count();
+                <p class="font-weight-bold">Số lượng khoá thi: @tempExaminee</p>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@model ModelView
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1>Danh sách sinh viên đăng kí thi</h1>
+    <div class="row">
+        <table class="table table-bordered table-hover table-striped text-center"
+               style="display:block;overflow:auto;border-radius:10px;">
+            <thead class="thead-light" style="display:table;width:100%;table-layout:fixed">
+                <tr>
+                    <th scope="col">Họ tên</th>
+                    <th scope="col">Ngày sinh</th>
+                    <th scope="col">Khoá thi</th>
+                    <th scope="col">Tên phòng</th>
+                    <th scope="col">Giới tính</th>
+                    <th scope="col">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody style="display:block;overflow:auto;max-height:400px;width:auto">
+                @if (Model.Examinees != null) // nếu dữ liệu khác null
+                {
+                    @foreach (var i in Model.Examinees)
+                    {
+                        <tr style="display:table;width:100%;table-layout:fixed;background-color:white;">
+                            <td><a style="color:black" class="font-weight-normal" asp-route-id="@i.AutoId" asp-action="Detail" asp-controller="Examinee">@i.FullName</a></td>
+                            <td style="color:black">@i.DoB</td>
+                            <td style="color:black">@i.ExaminationId</td>
+                            <td style="color:black">@i.RoomName</td>
+                            <td style="color:black">@i.Gender</td>
+                            <td>
+                                <a asp-route-id="@i.AutoId" asp-action="Detail" asp-controller="Examinee" class="btn btn-primary btn-sm">Xem chi tiết</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+Bạn muốn đăng ký thi? &nbsp;<a class="btn btn-info" asp-controller="Examinee" asp-action="Register">Đăng ký ngay!</a>
+
+<div class="row mt-3 text-center">
+    <div class="col-lg-4">
+        <a class="btn btn-outline-info" asp-controller="Result" asp-action="Detail">Kết quả điểm thi các thí sinh</a>
+    </div>
+    <div class="col-lg-4">
+        <a class="btn btn-outline-success" asp-controller="Examinee" asp-action="Search">Tra cứu thông tin phòng thi sinh viên</a>
+    </div>
+    <div class="col-lg-4">
+        <a class="btn btn-outline-primary" asp-controller="Search" asp-action="SearchListExam">Tra cứu danh sách dự thi theo phòng thi</a>
+    </div>
+</div>

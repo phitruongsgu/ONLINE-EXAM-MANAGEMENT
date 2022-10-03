@@ -1,0 +1,59 @@
+﻿@model ModelView
+<h3 class="text-danger">Kết quả tìm kiếm phòng thi dựa trên số điện thoại và họ tên thí sinh</h3>
+<table class="table table-bordered table-hover table-striped text-center" align="center">
+
+    <tr>
+        <td>
+            Tên phòng
+        </td>
+        <td>
+            Mô tả
+        </td>
+        <td>
+            Số lượng thí sinh
+        </td>
+        <td>
+            Ngày bắt đầu
+        </td>
+        <td>
+            Khoá thi
+        </td>
+    </tr>
+    @try
+    {
+        if (Model.room != null)
+        {
+            <tr>
+                <td>
+                    @Model.room.RoomName
+                </td>
+                <td>
+                    @Model.room.Description
+                </td>
+                <td>
+                    @Model.room.Total
+                </td>
+                <td>
+                    @Model.room.DateExam
+                </td>
+                <td>
+                    @Model.room.ExaminationId
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td colspan="4"><p>Không tìm thấy kết quả!</p></td>
+            </tr>
+        }
+    }
+    catch
+    {
+        <tr>
+            <td colspan="4"><p>Không tìm thấy kết quả!</p></td>
+        </tr>
+    }
+
+</table>
+<a style="text-align:center" asp-controller="Search" asp-action="Index">Về trang tìm kiếm</a>
